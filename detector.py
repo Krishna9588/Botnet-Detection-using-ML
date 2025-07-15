@@ -8,7 +8,7 @@ model = joblib.load("models/botnet_rf_model.joblib")
 # Load test data
 df = pd.read_csv("dataset/test_sample.csv")
 
-# Backup original for output
+# Backup the original for output
 df_original = df.copy()
 
 # Drop columns not used during training
@@ -27,13 +27,14 @@ df = df.dropna()
 # Predict
 predictions = model.predict(df)
 
-# Append predictions to original
+# Append predictions to the original
 df_original["Prediction"] = predictions
 df_original["Prediction_Label"] = df_original["Prediction"].apply(lambda x: "BOTNET" if x == 1 else "NORMAL")
 
 # Output results
 print(df_original[["Prediction_Label"]])
 
+output = "dataset/prediction_output.csv"
 # Optionally save results
-df_original.to_csv("dataset/prediction_output.csv", index=False)
-print("✅ Predictions saved to dataset/prediction_output.csv")
+df_original.to_csv(output, index=False)
+print(f"Predictions saved to {output}")

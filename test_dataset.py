@@ -16,4 +16,4 @@ df_combined.drop(columns=["Label"], inplace=True)
 # Save to test_sample.csv
 df_combined.to_csv("dataset/test_sample.csv", index=False)
 
-print("✅ test_sample.csv generated at dataset/test_sample.csv")
+print("test_sample.csv generated at dataset/test_sample.csv")
